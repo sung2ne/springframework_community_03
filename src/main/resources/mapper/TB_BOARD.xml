@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.test.community.mapper.BoardMapper">
+	
+	<!-- 게시글 등록 -->
+	<insert id="insert" parameterType="com.test.community.vo.BoardVO">
+		<!-- SEQ 값 자동 증가 설정 -->
+		<selectKey keyProperty="seq" resultType="java.lang.Integer" order="BEFORE">
+			select BOARD_SEQ.NEXTVAL from dual
+		</selectKey>
+		<!-- 게시글 등록 -->
+		<![CDATA[
+		INSERT INTO TB_BOARD
+		(SEQ, TITLE, CONTENT, PASSWD)
+		VALUES
+		(#{seq}, #{title}, #{content}, #{passwd})
+		]]>
+	</insert>
+	
+</mapper>
